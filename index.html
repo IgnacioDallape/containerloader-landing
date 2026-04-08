@@ -350,4 +350,10 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   btn.disabled = true;
   window.location.href = `mailto:nachodallape2@gmail.com?subject=${subject}&body=${body}`;
   setTimeout(() => {
-    document.getElem
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }, 1500);
+});
+</script>
+</body>
+</html>
