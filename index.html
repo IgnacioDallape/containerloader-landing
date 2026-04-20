@@ -191,7 +191,6 @@
     <div class="section-title" style="text-align:center">Precios simples,<br><em>sin sorpresas</em></div>
   </div>
   <div class="pricing-grid">
-    <!-- BÁSICO -->
     <div class="pricing-card">
       <div class="pricing-plan">Básico</div>
       <div class="pricing-price">ARS 24.999</div>
@@ -206,7 +205,6 @@
       </ul>
       <a href="#" class="btn-pricing-outline" onclick="handleCheckout(event, '8877107b-9b88-497f-9723-b9cb0ff7fbd9')">Suscribirme →</a>
     </div>
-    <!-- PRO -->
     <div class="pricing-card featured">
       <div class="pricing-badge">Más popular</div>
       <div class="pricing-plan">Pro</div>
@@ -223,7 +221,6 @@
       </ul>
       <a href="#" class="btn-pricing-solid" onclick="handleCheckout(event, '8d615e34-1fb7-4c20-b8fd-4507f7d55505')">Suscribirme →</a>
     </div>
-    <!-- PRO MAX -->
     <div class="pricing-card">
       <div class="pricing-plan">Pro Max</div>
       <div class="pricing-price">ARS 69.999</div>
@@ -244,7 +241,7 @@
 
 <div class="pricing-toast" id="pricingToast">
   Necesitás estar logueado para suscribirte.
-  <a href="https://ignaciodallape.github.io/ContenedorApp/" target="_blank">Ir a la app →</a>
+  <a href="https://fleetloader.vercel.app/" target="_blank">Ir a la app →</a>
 </div>
 
 <section class="contact-section" id="contacto">
@@ -284,11 +281,13 @@
   <div>© 2026 ContainerLoader · Software de logística argentino</div>
   <div style="display:flex;gap:24px">
     <a href="/cdn-cgi/l/email-protection#d6b8b7b5beb9b2b7babab7a6b3e496b1bbb7bfbaf8b5b9bb">Contacto</a>
-    <a href="https://ignaciodallape.github.io/ContenedorApp/" target="_blank">Ingresar a la app</a>
+    <a href="https://fleetloader.vercel.app/" target="_blank">Ingresar a la app</a>
   </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const APP_URL = 'https://fleetloader.vercel.app/';
+
 // Variant IDs — live mode
 const VARIANTS = {
   '8877107b-9b88-497f-9723-b9cb0ff7fbd9': 'basico',
@@ -308,7 +307,7 @@ function getSupabaseUserId() {
         }
       }
     }
-  } catch(e) {}
+  } catch (e) {}
   return null;
 }
 
@@ -320,7 +319,7 @@ function handleCheckout(e, variantId) {
     toast.classList.add('visible');
     setTimeout(() => toast.classList.remove('visible'), 4000);
     sessionStorage.setItem('cl_pending_variant', variantId);
-    setTimeout(() => { window.open('https://ignaciodallape.github.io/ContenedorApp/', '_blank'); }, 1200);
+    setTimeout(() => { window.open(APP_URL, '_blank'); }, 1200);
     return;
   }
   const checkoutUrl = `https://containerloader.lemonsqueezy.com/checkout/buy/${variantId}?checkout[custom][user_id]=${encodeURIComponent(userId)}`;
@@ -345,7 +344,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const plan    = this.querySelector('[name=plan]').value;
   const mensaje = this.querySelector('[name=mensaje]').value.trim();
   const subject = encodeURIComponent(`ContainerLoader — Consulta de ${nombre}`);
-  const body = encodeURIComponent(`Nombre: ${nombre}\nEmpresa: ${empresa||'—'}\nE-mail: ${email}\nPlan: ${plan}\n\n${mensaje||'—'}`);
+  const body = encodeURIComponent(`Nombre: ${nombre}\nEmpresa: ${empresa || '—'}\nE-mail: ${email}\nPlan: ${plan}\n\n${mensaje || '—'}`);
   btn.textContent = 'Abriendo cliente de correo...';
   btn.disabled = true;
   window.location.href = `mailto:nachodallape2@gmail.com?subject=${subject}&body=${body}`;
